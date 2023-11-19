@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 const emptyMap = [
-  ['', '', ''], //1st row
-  ['', '', ''], //2nd row
-  ['', '', ''], //3rd row
+  ['', '', '', '', ''], //1st row
+  ['', '', '', '', ''], //2nd row
+  ['', '', '', '', ''], //3rd row
+  ['', '', '', '', ''], //4rd row
+  ['', '', '', '', ''], //5rd row
 ];
 
 const copyArray = (original: any) => {
@@ -49,7 +51,7 @@ export default function () {
 
   const getWinner = (winnerMap: any) => {
     //check row
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       const isRowXWinning = winnerMap[i].every((cell: any) => cell === 'x');
       const isRowOWinning = winnerMap[i].every((cell: any) => cell === 'o');
       if (isRowXWinning) {
@@ -62,11 +64,11 @@ export default function () {
 
     //check columb
     try {
-      for (let col = 0; col < 3; col++) {
+      for (let col = 0; col < 5; col++) {
         let isColumnXWinner = true;
         let isColumnOWinner = true;
 
-        for (let row = 0; row < 3; row++) {
+        for (let row = 0; row < 5; row++) {
           if (winnerMap[row][col] !== 'x') {
             isColumnXWinner = false;
           }
@@ -95,19 +97,31 @@ export default function () {
     let isDiagonal1XWinning = true;
     let isDiagonal2OWinning = true;
     let isDiagonal2XWinning = true;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       if (winnerMap[i][i] !== 'o') {
         isDiagonal1OWinning = false;
       }
       if (winnerMap[i][i] !== 'x') {
         isDiagonal1XWinning = false;
       }
-      if (winnerMap[i][2 - i] !== 'o') {
+      if (winnerMap[i][4 - i] !== 'o') {
         isDiagonal2OWinning = false;
       }
-      if (winnerMap[i][2 - i] !== 'x') {
+      if (winnerMap[i][4 - i] !== 'x') {
         isDiagonal2XWinning = false;
       }
+      // if (winnerMap[i][3 - i] !== 'o') {
+      //   isDiagonal2OWinning = false;
+      // }
+      // if (winnerMap[i][3 - i] !== 'x') {
+      //   isDiagonal2XWinning = false;
+      // }
+      // if (winnerMap[i][4 - i] !== 'o') {
+      //   isDiagonal2OWinning = false;
+      // }
+      // if (winnerMap[i][4 - i] !== 'x') {
+      //   isDiagonal2XWinning = false;
+      // }
     }
 
     if (isDiagonal1OWinning || isDiagonal2OWinning) {
@@ -140,9 +154,11 @@ export default function () {
 
   const resetGame = () => {
     setMap([
-      ['', '', ''], //1st row
-      ['', '', ''], //2nd row
-      ['', '', ''], //3rd row
+      ['', '', '', '', ''], //1st row
+      ['', '', '', '', ''], //2nd row
+      ['', '', '', '', ''], //3rd row
+      ['', '', '', '', ''], //4rd row
+      ['', '', '', '', ''], //5rd row
     ]);
     setCurrenTurn('x');
   };
@@ -196,5 +212,13 @@ export default function () {
     }
   };
 
-  return {currentTurn, map, onPress, gameMode, setGameMode, resetGame};
+  return {
+    currentTurn,
+    map,
+    onPress,
+    gameMode,
+    setGameMode,
+    resetGame,
+    getWinner,
+  };
 }

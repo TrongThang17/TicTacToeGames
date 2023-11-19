@@ -4,21 +4,23 @@ import Cross from './Cross';
 const Cell = (props: any) => {
   const {cell, onPress} = props;
   return (
-    <Pressable
-      onPress={() => onPress(props.rowIndex, props.columnIndex)}
-      style={styles.cell}
-      key={`row-${props.rowIndex}-col${props.columnIndex}`}>
-      {cell === 'o' && <View style={styles.circle} />}
-      {cell === 'x' && <Cross />}
-    </Pressable>
+    <View>
+      <Pressable
+        onPress={() => onPress(props.rowIndex, props.columnIndex)}
+        style={styles.cell}
+        key={`row-${props.rowIndex}-col${props.columnIndex}`}>
+        {cell === 'o' && <View style={styles.circle} />}
+        {cell === 'x' && <Cross />}
+      </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   circle: {
     position: 'absolute',
-    width: 70,
-    height: 70,
+    width: 35,
+    height: 35,
     backgroundColor: 'white',
     borderRadius: 50,
     marginTop: 25,
@@ -30,8 +32,8 @@ const styles = StyleSheet.create({
     borderColor: 'red',
   },
   cell: {
-    width: 100,
-    height: 125,
+    width: 80,
+    height: 105,
     flex: 1,
   },
 });

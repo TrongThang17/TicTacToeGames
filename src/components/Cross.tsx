@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   crossLine: {
     position: 'absolute',
     width: 11,
-    height: 80,
+    height: 40,
     borderRadius: 5,
     marginLeft: 30,
     backgroundColor: 'red',
@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
     ],
   },
   cross: {
-    width: 75,
-    height: 75,
-    marginLeft: 20,
-    marginTop: 20,
+    width: 35,
+    height: 35,
+    marginLeft: 0,
+    marginTop: 23,
   },
 });
 
